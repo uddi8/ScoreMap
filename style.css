@@ -1,19 +1,19 @@
 :root {
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    --background: #f8fafc;
-    --surface: #ffffff;
-    --text: #0f172a;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
-    --accent: #10b981;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --background: #0f172a;
+    --surface: #1e293b;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --accent: #38bdf8;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -21,11 +21,57 @@ body {
     color: var(--text);
     padding: 1rem;
     line-height: 1.5;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Pixel Art Props built with CSS Box-Shadows */
+.pixel-prop {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* Minimalist Pixel Book */
+.prop-book {
+    top: 10%;
+    left: 8%;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    box-shadow: 
+        0 0 0 4px #f43f5e, 4px 0 0 4px #f43f5e,
+        8px 4px 0 4px #fff, 12px 4px 0 4px #fff;
+}
+
+/* Minimalist Pixel Pencil */
+.prop-pencil {
+    top: 45%;
+    right: 10%;
+    width: 8px;
+    height: 24px;
+    background: #eab308;
+    box-shadow: 0 24px 0 0 #f97316, 0 -8px 0 0 #f43f5e;
+    transform: rotate(45deg);
+}
+
+/* Minimalist Pixel Flask */
+.prop-flask {
+    top: 75%;
+    left: 12%;
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    box-shadow: 
+        4px 0 0 4px #a855f7, 8px 0 0 4px #a855f7,
+        0 8px 0 4px #a855f7, 12px 8px 0 4px #a855f7;
 }
 
 .container {
     max-width: 600px;
     margin: 0 auto;
+    position: relative;
 }
 
 header {
@@ -35,24 +81,22 @@ header {
 }
 
 header h1 {
-    font-size: 2.5rem;
-    color: var(--text);
-}
-
-header h1 span {
-    color: var(--primary);
-    font-weight: 400;
+    font-size: 2.8rem;
+    color: var(--accent);
+    text-shadow: 3px 3px 0px var(--primary);
+    letter-spacing: 2px;
 }
 
 header p {
     color: var(--text-muted);
+    margin-top: 0.5rem;
 }
 
 section {
     background: var(--surface);
     padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 3px solid var(--border);
+    border-radius: 0px; /* Sharp retro edge */
     margin-bottom: 1.5rem;
 }
 
@@ -65,6 +109,7 @@ label {
     font-weight: 600;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    color: var(--accent);
 }
 
 small {
@@ -77,15 +122,15 @@ small {
 input, textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
+    border: 2px solid var(--border);
     background: var(--background);
+    color: var(--text);
+    font-size: 1rem;
 }
 
 input:focus, textarea:focus {
-    outline: 2px solid var(--primary);
-    background: var(--surface);
+    outline: none;
+    border-color: var(--accent);
 }
 
 button {
@@ -94,22 +139,21 @@ button {
     background: var(--primary);
     color: white;
     border: none;
-    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    box-shadow: 4px 4px 0px var(--border);
 }
 
-button:hover {
-    background: var(--primary-hover);
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border);
 }
 
 .hidden {
     display: none;
 }
 
-/* Results Formatting */
 .results-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -120,26 +164,23 @@ button:hover {
 .card {
     background: var(--background);
     padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
 }
 
 .card h3 {
     font-size: 0.85rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
 }
 
 .card p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--accent);
 }
 
 .card.highlight {
-    border-top: 4px solid var(--accent);
+    border-color: var(--primary);
 }
 
 .breakdown-card {
@@ -153,11 +194,7 @@ button:hover {
 
 .breakdown-card li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px dashed var(--border);
     display: flex;
     justify-content: space-between;
-}
-
-.breakdown-card li:last-child {
-    border-bottom: none;
 }
