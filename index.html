@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScoreMap Lite - Study Planner MVP</title>
+    <title>ScoreMap - Study Planner MVP</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="pixel-prop prop-book"></div>
+    <div class="pixel-prop prop-pencil"></div>
+    <div class="pixel-prop prop-flask"></div>
+    <div class="pixel-prop prop-sparkle"></div>
+
     <div class="container">
         <header>
-            <h1>ScoreMap <span>Lite</span></h1>
+            <h1>ScoreMap</h1>
             <p>Your study blueprint in one click.</p>
         </header>
 
@@ -33,8 +38,8 @@
 
                     <div class="form-group">
                         <label for="subjectsList">Subjects & Chapters</label>
-                        <small>Format: Subject name, chapters (one per line)</small>
-                        <textarea id="subjectsList" rows="5" placeholder="Math, 15&#10;Science, 13&#10;Social, 10" required></textarea>
+                        <small>Type anything! Format: Subject, chapters (one per line)</small>
+                        <textarea id="subjectsList" rows="5" placeholder="Physics, 12&#10;History, 8&#10;Coding, 15" required></textarea>
                     </div>
 
                     <button type="submit" id="generateBtn">Generate Plan</button>
