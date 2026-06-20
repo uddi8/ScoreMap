@@ -198,3 +198,45 @@ button:active {
     display: flex;
     justify-content: space-between;
 }
+
+.breakdown-card ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.subject-block {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed var(--border);
+}
+
+.subject-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.subject-header {
+    font-size: 1.1rem;
+    color: var(--accent);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.time-blocks {
+    padding-left: 0.5rem;
+}
+
+.time-blocks div {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0.4rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-blocks div span {
+    color: var(--text);
+    font-weight: bold;
+}
