@@ -20,7 +20,6 @@ document.getElementById('plannerForm').addEventListener('submit', function(e) {
     let totalChapters = 0;
     let subjectsArray = [];
     
-    // Dynamically splits whatever the user types, line-by-line
     const lines = subjectsText.split('\n');
     lines.forEach(line => {
         if(line.trim() === "") return;
@@ -42,22 +41,48 @@ document.getElementById('plannerForm').addEventListener('submit', function(e) {
         return;
     }
 
+    // Calculations
     const chaptersPerDay = (totalChapters / daysLeft).toFixed(2);
-    const chaptersPerWeek = Math.ceil((totalChapters / daysLeft) * 7);
     const chaptersPerMonth = Math.ceil((totalChapters / daysLeft) * 30);
-    const hoursPerSubject = (hoursPerDay / subjectsArray.length).toFixed(1);
 
+    // Update global metrics
     document.getElementById('outDaysLeft').innerText = `${daysLeft} days`;
     document.getElementById('outTotalChapters').innerText = totalChapters;
     document.getElementById('outChaptersPerDay').innerText = `${chaptersPerDay} / day`;
-    document.getElementById('outWeeklyTarget').innerText = `${chaptersPerWeek} ch / wk`;
     document.getElementById('outMonthlyTarget').innerText = `${chaptersPerMonth} ch / mo`;
+
+    // Dynamic Weekly Target Rule (Hide if less than 7 days)
+    const weeklyCard = document.getElementById('outWeeklyTarget').closest('.card');
+    if (daysLeft < 7) {
+        weeklyCard.style.display = 'none';
+    } else {
+        weeklyCard.style.display = 'block';
+        const chaptersPerWeek = Math.ceil((totalChapters / daysLeft) * 7);
+        document.getElementById('outWeeklyTarget').innerText = `${chaptersPerWeek} ch / wk`;
+    }
+
+    // Proportional Time Block Distribution per Subject
+    const hoursPerSubject = hoursPerDay / subjectsArray.length;
+    
+    // Split each subject's time into 3 focus blocks: 40% Read, 30% Examples, 30% Question Qs
+    const readTime = (hoursPerSubject * 0.4).toFixed(1);
+    const practiceTime = (hoursPerSubject * 0.3).toFixed(1);
+    const questionTime = (hoursPerSubject * 0.3).toFixed(1);
 
     const splitList = document.getElementById('outDailySplit');
     splitList.innerHTML = "";
+    
     subjectsArray.forEach(sub => {
         const li = document.createElement('li');
-        li.innerHTML = `<strong>${sub.name}</strong> <span>${hoursPerSubject} hrs / day</span>`;
+        li.className = "subject-block";
+        li.innerHTML = `
+            <div class="subject-header"><strong>${sub.name}</strong> <span>(${hoursPerSubject.toFixed(1)} hrs total)</span></div>
+            <div class="time-blocks">
+                <div>📚 Read NCERT Thoroughly: <span>${readTime} hrs</span></div>
+                <div>✏️ Practice NCERT Exercises: <span>${practiceTime} hrs</span></div>
+                <div>⏱️ Question Drilling/PYQs: <span>${questionTime} hrs</span></div>
+            </div>
+        `;
         splitList.appendChild(li);
     });
 
