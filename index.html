@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScoreMap Lite - Study Planner MVP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ScoreMap <span>Lite</span></h1>
+            <p>Your study blueprint in one click.</p>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <form id="plannerForm">
+                    <div class="form-group">
+                        <label for="examDate">Exam Date</label>
+                        <input type="date" id="examDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetPercentage">Target Percentage (%)</label>
+                        <input type="number" id="targetPercentage" min="1" max="100" placeholder="e.g., 90" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hoursPerDay">Study Hours Available Per Day</label>
+                        <input type="number" id="hoursPerDay" min="1" max="24" placeholder="e.g., 3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subjectsList">Subjects & Chapters</label>
+                        <small>Format: Subject name, chapters (one per line)</small>
+                        <textarea id="subjectsList" rows="5" placeholder="Math, 15&#10;Science, 13&#10;Social, 10" required></textarea>
+                    </div>
+
+                    <button type="submit" id="generateBtn">Generate Plan</button>
+                </form>
+            </section>
+
+            <section id="outputSection" class="output-section hidden">
+                <h2>Your Study Plan</h2>
+                <div class="results-grid">
+                    <div class="card highlight">
+                        <h3>Days Left</h3>
+                        <p id="outDaysLeft">-</p>
+                    </div>
+                    <div class="card highlight">
+                        <h3>Total Chapters</h3>
+                        <p id="outTotalChapters">-</p>
+                    </div>
+                    <div class="card">
+                        <h3>Pace Needed</h3>
+                        <p id="outChaptersPerDay">-</p>
+                    </div>
+                    <div class="card">
+                        <h3>Monthly Target</h3>
+                        <p id="outMonthlyTarget">-</p>
+                    </div>
+                    <div class="card">
+                        <h3>Weekly Target</h3>
+                        <p id="outWeeklyTarget">-</p>
+                    </div>
+                </div>
+
+                <div class="card breakdown-card">
+                    <h3>Daily Time Split</h3>
+                    <ul id="outDailySplit"></ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
